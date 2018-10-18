@@ -8,12 +8,13 @@
 </head>
 <body>
 
+<?php
+echo 
+'<div class="container" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;width: 50%; height: 50%;min-width: 200px;max-width: 500px;padding: 40px;" >
 
-<div class="container" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;width: 50%; height: 50%;min-width: 200px;max-width: 500px;padding: 40px;" >
+ 	<h2 style=color:steelblue;text-align:center>Modificar Pokemon</h2>
 
- 	<h2 style=color:steelblue;text-align:center>Agregar un nuevo Pokemon</h2>
-
- 	<form action="agregar.php" method="POST">
+ 	<form action="modificarValidar.php" method="POST">
  		
  		<label style="padding-top: 1%">Nombre</label>
  		<input class="form-control" type="text" name="nombre" placeholder="Abra" required></input>
@@ -41,10 +42,10 @@
  		<label style="padding-top: 1%">Imagen URL</label>
  		<input class="form-control" type="text" name="imagen_url" placeholder="https://vignette.wikia.nocookie.net/es.pokemon/images/5/56/Charmander.png" required></input>
  		<br>
- 		<button class="btn btn-primary form-control "> Agregar </button>
+ 		<button class="btn btn-primary form-control" name="clave" value="'.$_GET['clave'].'"> Modificar </button>
 	</form>
 
-</div>
-
+</div>';
+?>
 </body>
 </html>

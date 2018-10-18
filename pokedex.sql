@@ -6,12 +6,13 @@ use Pokedex;
 
 create table pokemon (
 nombre varchar(20),
-tipo varchar(100),
+tipo varchar(20),
 imagen varchar(200));
 
 insert into pokemon values
-('Charmander','recursos/imagenes/tipo_fuego.png','recursos/imagenes/charmander.png'),
-('Pikachu','recursos/imagenes/tipo_electrico.png','recursos/imagenes/pikachu.png'),
-('Squirtle','recursos/imagenes/tipo_agua.png','recursos/imagenes/squirtle.png'),
-('Gengar','recursos/imagenes/tipo_fantasma.png','recursos/imagenes/gengar.png'),
-('Bulbasaur','recursos/imagenes/tipo_planta.png','recursos/imagenes/bulbasaur.png');
+('Charmander','Fuego','https://vignette.wikia.nocookie.net/es.pokemon/images/5/56/Charmander.png'),
+('Pikachu','Electrico','https://vignette.wikia.nocookie.net/es.pokemon/images/7/77/Pikachu.png'),
+('Squirtle','Agua','https://vignette.wikia.nocookie.net/es.pokemon/images/e/e3/Squirtle.png'),
+('Gengar','Fantasma','https://vignette.wikia.nocookie.net/es.pokemon/images/f/f8/Gengar.png'),
+('Bulbasaur','Planta','https://vignette.wikia.nocookie.net/es.pokemon/images/4/43/Bulbasaur.png');
+

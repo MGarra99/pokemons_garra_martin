@@ -12,82 +12,26 @@
 
 	include ('conexion.php');
 
-	echo '<div class="container" style="padding-top:3%; padding-bottom:5%">';
+	$nombre = $_POST['nombre'];
+	$tipo = $_POST['tipo'];
+	$imagen = $_POST['imagen_url'];
 
-	echo '<h1 style=color:steelblue;text-align:center;padding-bottom:3%>Pokedex regional</h1>';
+	$result = $mysqli->query("SELECT * FROM pokemon WHERE nombre = '$nombre'");
 
-	if(!isset($_GET['whoisthatpokemon']) || empty($_GET['whoisthatpokemon'])){
-		while ($rows=mysqli_fetch_assoc($result)) {
-
-				echo '<div class="container" style="padding-left:20%; padding-right:20%; text-align: center">';
-			
-				echo '<table class="table table-bordered">';
-
-				echo '<thead>
-					    <tr>
-					      <th scope="col">'.$rows['nombre'].'</th>
-					      <th scope="col">'.'Tipo'.'</th>
-					    </tr>
-					  </thead>';
-
-				echo '<tbody>
-					    <tr >
-					      <td><img src='.$rows['imagen'].'></th>
-					      <td style="padding-top:5%"><img src='.$rows['tipo'].'></td>
-					    </tr>
-					    <tr>
-					  </tbody>';
-
-				echo '</table>';
-
-				echo '</div>';
-					
-			}
-		
+	if($result->num_rows == 0){
+		$mysqli->query("INSERT INTO pokemon VALUES ('$nombre','$tipo','$imagen')");
+		header('Location: pokedex.php');
 	}else{
-		$buscar = $_GET['whoisthatpokemon']; 
-		$flag = false;
-
-		while ($rows=mysqli_fetch_assoc($result)) {
-			if($rows['nombre'] == $buscar) $flag = true;
-		}
-
-		if($flag){
-
-			$result = $mysqli->query("SELECT * FROM pokemon WHERE nombre = '$buscar'");
-			$rows=mysqli_fetch_assoc($result);
-		
-			echo '<div class="container" style="padding-left:20%; padding-right:20%; text-align: center">';
-			
-				echo '<table class="table table-bordered">';
-
-				echo '<thead>
-					    <tr>
-					      <th scope="col">'.$rows['nombre'].'</th>
-					      <th scope="col">'.'Tipo'.'</th>
-					    </tr>
-					  </thead>';
-
-				echo '<tbody>
-					    <tr >
-					      <td><img src='.$rows['imagen'].'></th>
-					      <td style="padding-top:5%"><img src='.$rows['tipo'].'></td>
-					    </tr>
-					    <tr>
-					  </tbody>';
-
-				echo '</table>';
-
-				echo '</div>';
-					
-		}else {
-			echo'<h2 style=color:tomato;text-align:center>No existe ese pokemon</h1>';
-			echo'<h4 style=color:black;text-align:center>(Asegurate de que escribes la primer letra en mayuscula)</h1>';
-		}
-		
+		echo'<div class="container" style="margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;width: 50%; height: 50%;min-width: 200px;max-width: 400px;padding: 40px;">
+			<h2 style=color:tomato;text-align:center>Ese pokemon ya existe en la Pokedex</h2>
+			<form action="agregar.html">
+			<button class="btn btn-primary btn-block"> Regresar </button>
+			</form>
+			</div>';
 	}
-	echo '</div>';
-	?>
+	
 
+
+	?>
 </body>
 </html>
